@@ -132,7 +132,8 @@
   /* About */
   .about-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 64px; align-items: start; }
   .portrait {
-    aspect-ratio: 4/5; background: linear-gradient(160deg, #d8d2c8, #b8b0a2);
+    aspect-ratio: 4/5;
+    background: url('profile.jpg') center / cover no-repeat;
     border-radius: 2px;
   }
   .about-text p { color: var(--muted); margin-bottom: 20px; max-width: 60ch; }
@@ -144,6 +145,16 @@
   }
   .cred li b { color: var(--ink); font-weight: 500; }
   @media (max-width: 720px) { .about-grid { grid-template-columns: 1fr; } }
+
+  /* Practice (operating room) */
+  .practice-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 64px; align-items: start; }
+  .or-photo {
+    aspect-ratio: 2/3; background: url('operating-room.jpg') center / cover no-repeat;
+    border-radius: 2px;
+  }
+  .practice-text p { color: var(--muted); margin-bottom: 20px; max-width: 60ch; }
+  .practice-text strong { color: var(--ink); font-weight: 500; }
+  @media (max-width: 720px) { .practice-grid { grid-template-columns: 1fr; gap: 40px; } }
 
   /* Procedures */
   .proc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--hair); }
@@ -224,6 +235,7 @@
     </a>
     <nav class="nav-links">
       <a href="#about">About</a>
+      <a href="#practice">Practice</a>
       <a href="#procedures">Procedures</a>
       <a href="#philosophy">Philosophy</a>
       <a href="#contact">Contact</a>
@@ -238,6 +250,7 @@
     <div class="wrap">
       <ul>
         <li><a href="#about">About</a></li>
+        <li><a href="#practice">Practice</a></li>
         <li><a href="#procedures">Procedures</a></li>
         <li><a href="#philosophy">Philosophy</a></li>
         <li><a href="#contact">Contact</a></li>
@@ -274,6 +287,18 @@
         <li><b>Hospital Affiliations</b> <span>University Medical Center</span></li>
         <li><b>Memberships</b> <span>ASPS · ASAPS · Fellow, ACS</span></li>
       </ul>
+    </div>
+  </div>
+</section>
+
+<section id="practice">
+  <div class="wrap practice-grid">
+    <div class="or-photo" aria-hidden="true"></div>
+    <div class="practice-text">
+      <div class="kicker">In Practice</div>
+      <h2>Quiet precision in the operating room</h2>
+      <p>Dr. Tang operates with microsurgical instrumentation and magnification, working through incisions measured in millimeters. The goal is always the same: <strong>minimal trauma, faster recovery, and a result that looks untouched.</strong></p>
+      <p>Every procedure is planned before the first incision — anatomy mapped, outcomes rehearsed, and contingencies anticipated — so the operation itself proceeds calmly and deliberately.</p>
     </div>
   </div>
 </section>
