@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dr. Nicholas Tang — Plastic Surgery</title>
+<meta name="description" content="Dr. Nicholas Tang, board-certified plastic surgeon. Reconstructive and aesthetic surgery with a natural, considered approach.">
+<style>
+  :root {
+    --ink: #1a1a1a;
+    --muted: #6f6f6f;
+    --hair: #e4e4e2;
+    --paper: #fafaf8;
+    --accent: #8a7968;
+    --serif: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+    --sans: "Inter", "Helvetica Neue", Arial, sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--sans);
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+
+  /* Header */
+  header {
+    position: sticky; top: 0; z-index: 10;
+    background: rgba(250,250,248,0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--hair);
+  }
+  .nav { display: flex; align-items: center; justify-content: space-between; padding: 20px 0; }
+  .brand { font-family: var(--serif); font-size: 22px; letter-spacing: 0.04em; color: var(--ink); text-decoration: none; }
+  .brand span { color: var(--accent); }
+  .nav-links { display: flex; gap: 36px; }
+  .nav-links a {
+    font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--muted); text-decoration: none;
+  }
+  .nav-links a:hover { color: var(--ink); }
+  @media (max-width: 720px) { .nav-links { display: none; } }
+
+  /* Hero */
+  .hero { padding: 120px 0 100px; border-bottom: 1px solid var(--hair); }
+  .hero h1 {
+    font-family: var(--serif); font-weight: 400;
+    font-size: clamp(44px, 7vw, 76px); line-height: 1.1;
+    letter-spacing: 0.01em; max-width: 12ch;
+  }
+  .hero .rule { width: 48px; height: 1px; background: var(--accent); margin: 36px 0; }
+  .hero p { max-width: 46ch; color: var(--muted); font-size: 18px; }
+  .cta-row { display: flex; gap: 24px; margin-top: 44px; flex-wrap: wrap; }
+  .btn {
+    display: inline-block; padding: 14px 32px;
+    font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase;
+    text-decoration: none; border: 1px solid var(--ink); color: var(--ink);
+    transition: background .25s, color .25s;
+  }
+  .btn:hover { background: var(--ink); color: var(--paper); }
+  .btn.solid { background: var(--ink); color: var(--paper); }
+  .btn.solid:hover { background: transparent; color: var(--ink); }
+
+  /* Sections */
+  section { padding: 100px 0; border-bottom: 1px solid var(--hair); }
+  .kicker {
+    font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 20px;
+  }
+  h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(30px, 4.5vw, 44px); line-height: 1.15; margin-bottom: 44px; }
+
+  /* About */
+  .about-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 64px; align-items: start; }
+  .portrait {
+    aspect-ratio: 4/5; background: linear-gradient(160deg, #d8d2c8, #b8b0a2);
+    border-radius: 2px;
+  }
+  .about-text p { color: var(--muted); margin-bottom: 20px; max-width: 60ch; }
+  .about-text strong { color: var(--ink); font-weight: 500; }
+  .cred { margin-top: 40px; }
+  .cred li {
+    list-style: none; padding: 14px 0; border-top: 1px solid var(--hair);
+    font-size: 14px; color: var(--muted); display: flex; justify-content: space-between; gap: 16px;
+  }
+  .cred li b { color: var(--ink); font-weight: 500; }
+  @media (max-width: 720px) { .about-grid { grid-template-columns: 1fr; } }
+
+  /* Procedures */
+  .proc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--hair); }
+  .proc {
+    background: var(--paper); padding: 44px 36px;
+    transition: background .3s;
+  }
+  .proc:hover { background: #ffffff; }
+  .proc h3 { font-family: var(--serif); font-weight: 400; font-size: 24px; margin-bottom: 10px; }
+  .proc p { font-size: 14px; color: var(--muted); max-width: 34ch; }
+  .proc .num { font-size: 12px; color: var(--accent); letter-spacing: 0.12em; margin-bottom: 24px; }
+  @media (max-width: 720px) { .proc-grid { grid-template-columns: 1fr; } }
+
+  /* Philosophy quote */
+  .philosophy { text-align: center; }
+  .philosophy blockquote {
+    font-family: var(--serif); font-size: clamp(26px, 4vw, 38px);
+    font-weight: 400; line-height: 1.3; max-width: 28ch; margin: 0 auto 24px;
+  }
+  .philosophy cite { font-style: normal; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+
+  /* Contact */
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; }
+  .contact-info p { color: var(--muted); font-size: 15px; margin-bottom: 8px; }
+  .contact-info .label { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin: 28px 0 8px; }
+  .contact-info .label:first-child { margin-top: 0; }
+  form .field { margin-bottom: 20px; }
+  label { display: block; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+  input, textarea {
+    width: 100%; padding: 12px 16px; font-family: var(--sans); font-size: 15px;
+    border: 1px solid var(--hair); background: #fff; color: var(--ink); border-radius: 0;
+  }
+  input:focus, textarea:focus { outline: none; border-color: var(--ink); }
+  textarea { height: 120px; resize: vertical; }
+  form .btn { border: none; background: var(--ink); color: var(--paper); cursor: pointer; font-family: var(--sans); }
+  form .btn:hover { background: var(--accent); }
+  @media (max-width: 720px) { .contact-grid { grid-template-columns: 1fr; } }
+
+  /* Footer */
+  footer { padding: 48px 0; font-size: 13px; color: var(--muted); }
+  .foot { display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+  .disclaimer { max-width: 72ch; margin-top: 16px; font-size: 12px; color: #9a9a9a; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#top">Nicholas Tang <span>MD</span></a>
+    <nav class="nav-links">
+      <a href="#about">About</a>
+      <a href="#procedures">Procedures</a>
+      <a href="#philosophy">Philosophy</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <div class="wrap">
+    <h1>Surgery, considered.</h1>
+    <div class="rule"></div>
+    <p>Dr. Nicholas Tang is a board-certified plastic surgeon dedicated to natural, refined results — reconstructive and aesthetic surgery grounded in precision, restraint, and honest counsel.</p>
+    <div class="cta-row">
+      <a class="btn solid" href="#contact">Book a Consultation</a>
+      <a class="btn" href="#procedures">Explore Procedures</a>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap about-grid">
+    <div class="portrait" aria-hidden="true"></div>
+    <div class="about-text">
+      <div class="kicker">About</div>
+      <h2>The surgeon behind the work</h2>
+      <p><strong>Dr. Nicholas Tang</strong> trained at some of the country's leading academic centers, completing a residency in plastic and reconstructive surgery followed by advanced fellowship training in aesthetic and microsurgical technique.</p>
+      <p>His practice spans the full breadth of plastic surgery — from complex reconstruction after cancer and trauma to refined aesthetic procedures of the face, breast, and body. What unites the work is a single principle: <strong>the best surgery is the surgery no one notices</strong>.</p>
+      <p>Every consultation begins with listening. Recommendations are made only when they serve you — and sometimes the right recommendation is to do nothing at all.</p>
+      <ul class="cred">
+        <li><b>Board Certification</b> <span>American Board of Plastic Surgery</span></li>
+        <li><b>Fellowship</b> <span>Aesthetic &amp; Reconstructive Microsurgery</span></li>
+        <li><b>Hospital Affiliations</b> <span>University Medical Center</span></li>
+        <li><b>Memberships</b> <span>ASPS · ASAPS · Fellow, ACS</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="procedures">
+  <div class="wrap">
+    <div class="kicker">Procedures</div>
+    <h2>Focused areas of practice</h2>
+    <div class="proc-grid">
+      <div class="proc">
+        <div class="num">01</div>
+        <h3>Facial Surgery</h3>
+        <p>Rhinoplasty, facelift, blepharoplasty, and neck contouring — planned around your anatomy, not a trend.</p>
+      </div>
+      <div class="proc">
+        <div class="num">02</div>
+        <h3>Breast Surgery</h3>
+        <p>Augmentation, reduction, lifting, and reconstructive oncologic work with an emphasis on proportion and symmetry.</p>
+      </div>
+      <div class="proc">
+        <div class="num">03</div>
+        <h3>Body Contouring</h3>
+        <p>Abdominoplasty, liposuction, and post-weight-loss reconstruction that restore shape while respecting natural lines.</p>
+      </div>
+      <div class="proc">
+        <div class="num">04</div>
+        <h3>Reconstructive Surgery</h3>
+        <p>Microsurgical reconstruction, flap and graft technique, and complex wound care following cancer or trauma.</p>
+      </div>
+      <div class="proc">
+        <div class="num">05</div>
+        <h3>Non-Surgical</h3>
+        <p>Injectables, laser therapy, and medical-grade skin treatments — conservative dosing, subtle effect.</p>
+      </div>
+      <div class="proc">
+        <div class="num">06</div>
+        <h3>Revision Surgery</h3>
+        <p>Careful correction of prior surgical outcomes, approached with realism about what revision can achieve.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="philosophy" class="philosophy">
+  <div class="wrap">
+    <div class="kicker">Philosophy</div>
+    <blockquote>"The goal is not to make you look different — it is to make you look rested, balanced, and like yourself."</blockquote>
+    <cite>— Dr. Nicholas Tang</cite>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap contact-grid">
+    <div class="contact-info">
+      <div class="kicker">Contact</div>
+      <h2>Begin with a conversation</h2>
+      <div class="label">Clinic</div>
+      <p>Tang Plastic Surgery<br>1200 Meridian Avenue, Suite 400<br>San Francisco, CA 94109</p>
+      <div class="label">Phone</div>
+      <p>(415) 555-0142</p>
+      <div class="label">Email</div>
+      <p>consult@tangplasticsurgery.com</p>
+      <div class="label">Hours</div>
+      <p>Mon–Fri, 9:00 – 17:00</p>
+    </div>
+    <form onsubmit="event.preventDefault(); alert('Thank you — we will contact you within two business days.'); this.reset();">
+      <div class="field">
+        <label for="name">Name</label>
+        <input id="name" name="name" type="text" required>
+      </div>
+      <div class="field">
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" required>
+      </div>
+      <div class="field">
+        <label for="topic">Area of Interest</label>
+        <input id="topic" name="topic" type="text" placeholder="e.g. rhinoplasty, reconstruction">
+      </div>
+      <div class="field">
+        <label for="message">Message</label>
+        <textarea id="message" name="message"></textarea>
+      </div>
+      <button class="btn" type="submit">Request Consultation</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <span>© 2026 Tang Plastic Surgery. All rights reserved.</span>
+      <span><a href="#contact" style="color:inherit;">Privacy</a> &nbsp;·&nbsp; <a href="#contact" style="color:inherit;">Terms</a></span>
+    </div>
+    <p class="disclaimer">This website is for informational purposes only and does not constitute medical advice. Results vary by individual; no outcome can be guaranteed. A consultation is required before any recommendation or treatment.</p>
+  </div>
+</footer>
+
+</body>
+</html>
