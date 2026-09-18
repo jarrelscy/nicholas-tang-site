@@ -33,16 +33,59 @@
     backdrop-filter: blur(8px);
     border-bottom: 1px solid var(--hair);
   }
-  .nav { display: flex; align-items: center; justify-content: space-between; padding: 20px 0; }
-  .brand { font-family: var(--serif); font-size: 22px; letter-spacing: 0.04em; color: var(--ink); text-decoration: none; }
+  .nav { display: flex; align-items: center; justify-content: space-between; padding: 16px 0; }
+  .brand {
+    display: flex; align-items: center; gap: 12px;
+    font-family: var(--serif); font-size: 21px; letter-spacing: 0.04em;
+    color: var(--ink); text-decoration: none;
+  }
+  .brand .logo { flex: none; }
   .brand span { color: var(--accent); }
+  .brand .brand-text { display: flex; flex-direction: column; line-height: 1.15; }
+  .brand .brand-sub {
+    font-family: var(--sans); font-size: 10px; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--muted);
+  }
   .nav-links { display: flex; gap: 36px; }
   .nav-links a {
     font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase;
     color: var(--muted); text-decoration: none;
   }
   .nav-links a:hover { color: var(--ink); }
-  @media (max-width: 720px) { .nav-links { display: none; } }
+
+  /* Mobile menu */
+  .menu-btn {
+    display: none; flex-direction: column; justify-content: center; gap: 6px;
+    width: 44px; height: 44px; padding: 10px;
+    background: none; border: none; cursor: pointer;
+  }
+  .menu-btn .bar {
+    display: block; width: 100%; height: 1.5px; background: var(--ink);
+    transition: transform .3s, opacity .3s;
+  }
+  .menu-btn[aria-expanded="true"] .bar:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
+  .menu-btn[aria-expanded="true"] .bar:nth-child(2) { opacity: 0; }
+  .menu-btn[aria-expanded="true"] .bar:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
+  .mobile-nav {
+    display: none; overflow: hidden; max-height: 0;
+    transition: max-height .35s ease;
+    border-top: 1px solid transparent;
+  }
+  .mobile-nav.open { max-height: 320px; border-top: 1px solid var(--hair); }
+  .mobile-nav ul { list-style: none; padding: 8px 0 20px; }
+  .mobile-nav a {
+    display: block; padding: 14px 0; border-bottom: 1px solid var(--hair);
+    font-size: 15px; letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--ink); text-decoration: none;
+  }
+  .mobile-nav a:last-of-type { border-bottom: none; }
+  .mobile-nav .btn { margin-top: 16px; width: 100%; text-align: center; }
+  @media (max-width: 720px) {
+    .nav-links { display: none; }
+    .menu-btn { display: flex; }
+    .mobile-nav { display: block; }
+    header { background: var(--paper); }
+  }
 
   /* Hero */
   .hero { padding: 120px 0 100px; border-bottom: 1px solid var(--hair); }
@@ -129,20 +172,65 @@
   footer { padding: 48px 0; font-size: 13px; color: var(--muted); }
   .foot { display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
   .disclaimer { max-width: 72ch; margin-top: 16px; font-size: 12px; color: #9a9a9a; }
+
+  /* Mobile polish */
+  @media (max-width: 720px) {
+    .wrap { padding: 0 20px; }
+    .hero { padding: 72px 0 64px; }
+    .hero p { font-size: 17px; }
+    .hero .rule { margin: 28px 0; }
+    .cta-row { gap: 14px; margin-top: 34px; }
+    .btn { padding: 14px 24px; font-size: 12px; }
+    section { padding: 64px 0; }
+    h2 { margin-bottom: 32px; }
+    .about-grid { gap: 40px; }
+    .proc { padding: 36px 28px; }
+    .contact-grid { gap: 48px; }
+    input, textarea { font-size: 16px; padding: 14px 16px; } /* prevents iOS zoom-on-focus */
+    form .field { margin-bottom: 18px; }
+    .foot { flex-direction: column; gap: 8px; }
+    footer { padding: 40px 0; }
+  }
 </style>
 </head>
 <body>
 
 <header>
   <div class="wrap nav">
-    <a class="brand" href="#top">Nicholas Tang <span>MD</span></a>
+    <a class="brand" href="#top" aria-label="Nicholas Tang MD — home">
+      <svg class="logo" width="44" height="44" viewBox="0 0 44 44" aria-hidden="true">
+        <circle cx="22" cy="22" r="21" fill="none" stroke="#8a7968" stroke-width="1"/>
+        <text x="22" y="27" text-anchor="middle" font-family="Cormorant Garamond, Georgia, serif"
+              font-size="17" letter-spacing="1.5" fill="#1a1a1a">NT</text>
+      </svg>
+      <span class="brand-text">
+        Nicholas Tang <span>MD</span>
+        <span class="brand-sub">Plastic Surgery</span>
+      </span>
+    </a>
     <nav class="nav-links">
       <a href="#about">About</a>
       <a href="#procedures">Procedures</a>
       <a href="#philosophy">Philosophy</a>
       <a href="#contact">Contact</a>
     </nav>
+    <button class="menu-btn" aria-expanded="false" aria-controls="mobile-menu" aria-label="Toggle menu">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
   </div>
+  <nav class="mobile-nav" id="mobile-menu">
+    <div class="wrap">
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#procedures">Procedures</a></li>
+        <li><a href="#philosophy">Philosophy</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <a class="btn solid" href="#contact">Book a Consultation</a>
+    </div>
+  </nav>
 </header>
 
 <section class="hero" id="top">
@@ -262,12 +350,34 @@
 <footer>
   <div class="wrap">
     <div class="foot">
-      <span>© 2026 Tang Plastic Surgery. All rights reserved.</span>
+      <span style="display:inline-flex;align-items:center;gap:10px;">
+        <svg width="28" height="28" viewBox="0 0 44 44" aria-hidden="true">
+          <circle cx="22" cy="22" r="21" fill="none" stroke="#8a7968" stroke-width="1"/>
+          <text x="22" y="27" text-anchor="middle" font-family="Cormorant Garamond, Georgia, serif"
+                font-size="17" letter-spacing="1.5" fill="#1a1a1a">NT</text>
+        </svg>
+        © 2026 Tang Plastic Surgery. All rights reserved.</span>
       <span><a href="#contact" style="color:inherit;">Privacy</a> &nbsp;·&nbsp; <a href="#contact" style="color:inherit;">Terms</a></span>
     </div>
     <p class="disclaimer">This website is for informational purposes only and does not constitute medical advice. Results vary by individual; no outcome can be guaranteed. A consultation is required before any recommendation or treatment.</p>
   </div>
 </footer>
+
+<script>
+  const menuBtn = document.querySelector('.menu-btn');
+  const mobileNav = document.getElementById('mobile-menu');
+  menuBtn.addEventListener('click', () => {
+    const open = mobileNav.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', open);
+  });
+  // Close the menu when a link inside it is followed
+  mobileNav.querySelectorAll('a').forEach(a =>
+    a.addEventListener('click', () => {
+      mobileNav.classList.remove('open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+    })
+  );
+</script>
 
 </body>
 </html>
